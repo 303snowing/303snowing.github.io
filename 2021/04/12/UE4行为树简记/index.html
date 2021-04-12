@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>UE4行为树简记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="UE4 AI行为树简记 行为树节点 官方文档Composites Composites 类型的节点定义一个分支的根以及在该分支上被如何执行的基本规则  Select   从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层     Sequence   从左往右执行其子节点，直到一个失败，则 Sequence 失败并返回上层，否则达成并返回上层     Simp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UE4行为树简记">
+<meta property="og:url" content="http://example.com/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="UE4 AI行为树简记 行为树节点 官方文档Composites Composites 类型的节点定义一个分支的根以及在该分支上被如何执行的基本规则  Select   从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层     Sequence   从左往右执行其子节点，直到一个失败，则 Sequence 失败并返回上层，否则达成并返回上层     Simp">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-12T12:40:44.000Z">
+<meta property="article:modified_time" content="2021-04-12T12:41:29.163Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-UE4行为树简记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-04-12T12:40:44.000Z" itemprop="datePublished">2021-04-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      UE4行为树简记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="UE4-AI行为树简记"><a href="#UE4-AI行为树简记" class="headerlink" title="UE4 AI行为树简记"></a>UE4 AI行为树简记</h2><hr>
+<h3 id="行为树节点-官方文档"><a href="#行为树节点-官方文档" class="headerlink" title="行为树节点 官方文档"></a>行为树节点 <a target="_blank" rel="noopener" href="https://docs.unrealengine.com/latest/CHN/Engine/AI/BehaviorTrees/NodeReference/index.html" title="行为树节点参考"><font size=2 color=green>官方文档</font></a></h3><h4 id="Composites"><a href="#Composites" class="headerlink" title="Composites"></a><strong>Composites</strong></h4><blockquote>
+<p>Composites 类型的节点定义一个分支的根以及在该分支上被如何执行的基本规则</p>
+<ul>
+<li><strong>Select</strong></li>
+</ul>
+<blockquote>
+<p>从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Sequence</strong></li>
+</ul>
+<blockquote>
+<p>从左往右执行其子节点，直到一个失败，则 Sequence 失败并返回上层，否则达成并返回上层</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>Simple Parallel</strong></li>
+</ul>
+<blockquote>
+<p>包含一个<code>main task</code>和一个<code>sub tree</code>，   <code>main task</code>支持一个 Task 节点，用于执行一个主线行为，sub tree 支持一个行为树，伴随 main task 执行，返回结果是<code>main task</code>的执行结果</p>
+<p>Finish Mode 属性<br>Immediate：在 main task 执行完成时，打断 sub tree 并返回上层<br>Delayed：在 main task 执行完成时，如果 sub tree 没有执行完，则等待它执行完成再返回上层</p>
+</blockquote>
+<h4 id="Task"><a href="#Task" class="headerlink" title="Task"></a><strong>Task</strong></h4><blockquote>
+<p>Task 节点用于执行具体的动作，引擎内置的 Task 常用的有 Wait 、 Move To 、 Is At Location 等等，Task 一般是自行实现的AI具体的行为逻辑，其中的代码与普通蓝图代码一样</p>
+<p><strong>Task 中的常用事件</strong></p>
+<blockquote>
+<ul>
+<li><strong>Event Receive Execute / Event Receive Execute AI</strong><br>定义该 Task 的主体逻辑代码，如果没有特殊需求，则必须以 <em><strong>Finish Execute</strong></em> 节点结束，因为只有 Finish Execute 节点才能想上层返回执行结果，否则该 Task 如果不被打断将不会执行完成<br><font color=red><em>如果同时存在 Event Receive Execute 和 Event Receive Execute AI 两个事件，优先执行 Event Receive Execute AI 事件</em></font><br></li>
+<li><strong>Event Receive Abort / Event Receive Abort AI</strong><br>当前任务被打断时触发该事件，用来处理突发情况对当前行为的影响，如果没有特殊需求，则必须以 <em><strong>Finish Abort</strong></em> 节点结束，以结束该任务节点的执行<br><font color=red><em>如果同时存在 Event Receive Abort 和 Event Receive Abort AI 两个事件，优先执行 Event Receive Abort AI 事件</em></font></li>
+</ul>
+</blockquote>
+</blockquote>
+<h4 id="Decorator"><a href="#Decorator" class="headerlink" title="Decorator"></a><strong>Decorator</strong></h4><blockquote>
+<p>Decorator 类型的节点用作条件判断(类似于程序中的基本流程控制)，附着于 Composites 或 Task 节点上</p>
+<p><strong>常用 Decorator 条件</strong></p>
+<blockquote>
+<ul>
+<li><strong>Blackboard</strong> 判断指定的黑板的键值是否符合判断条件</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Notify Observer<br> 规定条件重新评估的时机</td>
+<td>On Result Change&nbsp; 适用于范围性检测，当检测的值越界时进行重新评估该条件产生的结果 <br> On Value Change &nbsp;&nbsp; 适用于精确检测，当检测的值发生变化时进行重新评估该条件产生的结果</td>
+</tr>
+<tr>
+<td>Observer Aborts<br> 条件判定结果变化时，要中断的执行节点</td>
+<td>None&emsp; 不中止执行 <br> Self &emsp; 中止Self，以及在此节点下运行的所有子树 <br> Lower Priority &emsp; 中止此节点右方的所有节点 <br> Both &emsp; 中止Self及Self所有子树，以及它右方的所有节点</td>
+</tr>
+<tr>
+<td>Key Query<br> 比较条件</td>
+<td>[ int / float / enum ]&emsp; == / != / &gt; / &gt;= / &lt; / &lt;= <br> [ object ] &emsp; Is Set 有值 / Is Not Set 没值 <br> [ vector / rotater ] &emsp; Is Set 初始化 / Is Not Set 未初始化</td>
+</tr>
+<tr>
+<td>Blackboard Key</td>
+<td>用于检查的黑板的键。对可返回None的数据类型(如物体)作用最佳，因为其他类型的数据可能返回其初始化值(0、false 、 {0,0,0}等)</td>
+</tr>
+<tr>
+<td>Node Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Composite</strong> 通过 Composite Decorator 节点可设置比内置节点更高级的逻辑，但无法达到完整蓝图的复杂程度</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Composite Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+<tr>
+<td>Show Operations</td>
+<td>使操作以纯文本方式列于节点上</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Loop</strong> 循环指定的次数或无限循环</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Num Loops</td>
+<td>循环的次数</td>
+</tr>
+<tr>
+<td>Infinite Loop</td>
+<td>是否进行无限循环</td>
+</tr>
+<tr>
+<td>Node Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Conditional Loop</strong> 带条件的循环，如果Blackboard上指定的键值满足条件则进行循环</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+<tr>
+<td>Key Value</td>
+<td>[ int / float / enum ]&emsp; == / != / &gt; / &gt;= / &lt; / &lt;= <br> [ object ] &emsp; Is Set 有值 / Is Not Set 没值 <br> [ vector / rotater ] &emsp; Is Set 初始化 / Is Not Set 未初始化</td>
+</tr>
+<tr>
+<td>Blackboard Key</td>
+<td>用于检查的黑板的键。对可返回None的数据类型(如物体)作用最佳，因为其他类型的数据可能返回其初始化值(0、false 、 {0,0,0}等)</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Cone Check</strong> 检测指定的位置或Actor是否在椎体范围内，返回bool结果</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cone Half Angle</td>
+<td>椎体的半角。对于90度的椎体而言，这个值应该设置为45度</td>
+</tr>
+<tr>
+<td>Observer Aborts<br> 条件判定结果变化时，要中断的执行节点</td>
+<td>None&emsp; 不中止执行 <br> Self &emsp; 中止Self，以及在此节点下运行的所有子树 <br> Lower Priority &emsp; 中止此节点右方的所有节点 <br> Both &emsp; 中止Self及Self所有子树，以及它右方的所有节点</td>
+</tr>
+<tr>
+<td>Cone Origin</td>
+<td>椎形开始的位置(锥形尖端)</td>
+</tr>
+<tr>
+<td>Cone Direction</td>
+<td>锥形口的朝向</td>
+</tr>
+<tr>
+<td>Observer</td>
+<td>被检查的位置或Actor，确定是否在锥形内</td>
+</tr>
+<tr>
+<td>Inverse Condition</td>
+<td>结果是否翻转(true变为false，false变为true)</td>
+</tr>
+<tr>
+<td>Node Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>CoolDown</strong> 会锁定一个节点或分支的执行，直到冷却时间结束</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cool Down time</td>
+<td>Cooldown decorator 锁定此节点执行的冷却时间(以秒计算)</td>
+</tr>
+<tr>
+<td>Observer Aborts<br> 条件判定结果变化时，要中断的执行节点</td>
+<td>None&emsp; 不中止执行 <br> Self &emsp; 中止Self，以及在此节点下运行的所有子树 <br> Lower Priority &emsp; 中止此节点右方的所有节点 <br> Both &emsp; 中止Self及Self所有子树，以及它右方的所有节点</td>
+</tr>
+<tr>
+<td>Node Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Does Path Exist</strong> 确定路径是否可由以下两个矢量组成：Blackboard Key A 和 Blackboard Key B (判定SelfActor与TargetPawn是否存在一条可以到达的路径，返回bool结果)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Blackboard Key A</td>
+<td>路径中的第一个位置</td>
+</tr>
+<tr>
+<td>Blackboard Key B</td>
+<td>路径中的第二个位置</td>
+</tr>
+<tr>
+<td>Path Query Type<br> 路径计算类型</td>
+<td>NavMesh Raycast 2D&emsp; 非常快 <br> Hierarchical Query &emsp; 快 <br> Regular Path Finding &emsp; 慢</td>
+</tr>
+<tr>
+<td>Inverse Condition</td>
+<td>结果是否翻转(true变为false，false变为true)</td>
+</tr>
+<tr>
+<td>Observer Aborts<br> 条件判定结果变化时，要中断的执行节点</td>
+<td>None&emsp; 不中止执行 <br> Self &emsp; 中止Self，以及在此节点下运行的所有子树 <br> Lower Priority &emsp; 中止此节点右方的所有节点 <br> Both &emsp; 中止Self及Self所有子树，以及它右方的所有节点</td>
+</tr>
+<tr>
+<td>Filter Class</td>
+<td>确定使用的导航数据。如果设为None，则将 使用默认的导航数据</td>
+</tr>
+<tr>
+<td>Node Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+<tr>
+<td><br></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Force Success</strong> 强制使所附着的节点返回执行成功结果</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node Name</td>
+<td>行为树图表中显示的节点名称</td>
+</tr>
+</tbody></table>
+</blockquote>
+</blockquote>
+<h4 id="Services"><a href="#Services" class="headerlink" title="Services"></a><strong>Services</strong></h4><blockquote>
+<p>Services 附着在 Composite 节点上，只要其分支节点被执行，它们便将按所定义的频率执行。它们常用于检查和更新黑板。它们以行为树系统的形态取代了传统平行节点</p>
+<p>可在行为树图表编辑界面添加自定义的Service，在Service中添加若干Blackboard Key Selector类型的引用变量暴露出来并编译，然后将Service附着在Composites或者Task节点上，在节点上点击已附着的Service，在其属性栏中为其中的变量指认黑板上的键，然后在Service中编写逻辑代码对已指认的变量进行更新</p>
+<p><strong>Service中的常用事件</strong></p>
+<blockquote>
+<ul>
+<li><strong>Event Receive Search Start / Event Receive Search AI</strong><br>在任务搜索进入树的分支时被调用。比如有一个父节点A，其下面有两个子节点B和C，当任务搜索进入A时调用A的Service中的Search Start，如果A完成或者被打断，当任务搜索进入B时，将再次调用A的Service中的Search Start<br><font color=red><em>如果同时存在 Event Receive Search Start 和 Event Receive Search Start AI 两个事件，优先执行 Event Receive Search Start AI 事件</em></font><br></li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<ul>
+<li><strong>Event Receive Activation / Event Receive Activation AI</strong><br>在某节点从非活动子树的一部分变为活动子树的一部分时触发<br><font color=red><em>如果同时存在 Event Receive Activation 和 Event Receive Activation AI 两个事件，优先执行 Event Receive Activation AI 事件</em></font><br></li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<ul>
+<li><strong>Event Receive Deactivation / Event Receive Deactivation AI</strong><br>在某节点从活动子树的一部分变为非活动子树的一部分时触发<br><font color=red><em>如果同时存在 Event Receive Deactivation 和 Event Receive Deactivation AI 两个事件，优先执行 Event Receive Deactivation AI 事件</em></font><br></li>
+</ul>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<ul>
+<li><strong>Event Receive Tick / Event Receive Tick AI</strong><br>当Service所在的节点是活动子树的一部分时，Tick事件将以指定的频率调用，Tick的触发时间间隔由所在Service的Interval和Random Deviation属性共同决定，Interval指定基础时间间隔，Random Deviation指定在基础时间间隔上的随机误差<br><font color=red><em>如果同时存在 Event Receive Tick 和 Event Receive Tick AI 两个事件，优先执行 Event Receive Tick AI 事件</em></font></li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/" data-id="cknel3nmx0001z0qxhy407ja2" data-title="UE4行为树简记" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/04/12/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/">UE4行为树简记</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/12/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
