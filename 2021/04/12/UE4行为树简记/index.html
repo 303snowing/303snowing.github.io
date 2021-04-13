@@ -12,21 +12,21 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="UE4 AI行为树简记 行为树节点 官方文档Composites Composites 类型的节点定义一个分支的根以及在该分支上被如何执行的基本规则  Select   从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层     Sequence   从左往右执行其子节点，直到一个失败，则 Sequence 失败并返回上层，否则达成并返回上层     Simp">
+  <meta name="description" content="UE4 AI行为树简记 行为树节点 官方文档Composites Composites 类型的节点定义一个分支的根以及在该分支上被如何执行的基本规则  Select   从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UE4行为树简记">
 <meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/index.html">
 <meta property="og:site_name" content="303snowing">
-<meta property="og:description" content="UE4 AI行为树简记 行为树节点 官方文档Composites Composites 类型的节点定义一个分支的根以及在该分支上被如何执行的基本规则  Select   从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层     Sequence   从左往右执行其子节点，直到一个失败，则 Sequence 失败并返回上层，否则达成并返回上层     Simp">
+<meta property="og:description" content="UE4 AI行为树简记 行为树节点 官方文档Composites Composites 类型的节点定义一个分支的根以及在该分支上被如何执行的基本规则  Select   从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-12T12:40:44.000Z">
-<meta property="article:modified_time" content="2021-04-12T12:41:29.163Z">
+<meta property="article:modified_time" content="2021-04-13T00:40:59.492Z">
 <meta property="article:author" content="303snowing">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1618237610895">
+  <link rel="stylesheet" href="/css/style.css?v=1618274632482">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -146,6 +146,7 @@
 <p>从左往右执行其子节点，直到一个达成，则 Select 达成并返回上层，否则失败并返回上层</p>
 </blockquote>
 </blockquote>
+<span id="more"></span>
 <blockquote>
 <ul>
 <li><strong>Sequence</strong></li>
@@ -153,8 +154,6 @@
 <blockquote>
 <p>从左往右执行其子节点，直到一个失败，则 Sequence 失败并返回上层，否则达成并返回上层</p>
 </blockquote>
-</blockquote>
-<blockquote>
 <ul>
 <li><strong>Simple Parallel</strong></li>
 </ul>
@@ -167,8 +166,12 @@
 <p><strong>Task 中的常用事件</strong></p>
 <blockquote>
 <ul>
-<li><strong>Event Receive Execute / Event Receive Execute AI</strong><br>定义该 Task 的主体逻辑代码，如果没有特殊需求，则必须以 <em><strong>Finish Execute</strong></em> 节点结束，因为只有 Finish Execute 节点才能想上层返回执行结果，否则该 Task 如果不被打断将不会执行完成<br><font color=red><em>如果同时存在 Event Receive Execute 和 Event Receive Execute AI 两个事件，优先执行 Event Receive Execute AI 事件</em></font><br></li>
-<li><strong>Event Receive Abort / Event Receive Abort AI</strong><br>当前任务被打断时触发该事件，用来处理突发情况对当前行为的影响，如果没有特殊需求，则必须以 <em><strong>Finish Abort</strong></em> 节点结束，以结束该任务节点的执行<br><font color=red><em>如果同时存在 Event Receive Abort 和 Event Receive Abort AI 两个事件，优先执行 Event Receive Abort AI 事件</em></font></li>
+<li><strong>Event Receive Execute / Event Receive Execute AI</strong><br>定义该 Task 的主体逻辑代码，如果没有特殊需求，则必须以 <strong><em>Finish Execute</em></strong> 节点结束，因为只有 Finish Execute 节点才能想上层返回执行结果，否则该 Task 如果不被打断将不会执行完成<br><font color=red><em>如果同时存在 Event Receive Execute 和 Event Receive Execute AI 两个事件，优先执行 Event Receive Execute AI 事件</em></font><br><br></li>
+<li><strong>Event Receive Abort / Event Receive Abort AI</strong><br>当前任务被打断时触发该事件，用来处理突发情况对当前行为的影响，如果没有特殊需求，则必须以 <strong><em>Finish Abort</em></strong> 节点结束，以结束该任务节点的执行<font color=red>*如果同时存在 Event Receive Abort 和 Event Receive Abort AI 两个事件，优先执行 Event Receive Abort AI 事件*</font>
+
+
+
+</li>
 </ul>
 </blockquote>
 </blockquote>
@@ -179,6 +182,7 @@
 <ul>
 <li><strong>Blackboard</strong> 判断指定的黑板的键值是否符合判断条件</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -186,7 +190,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Notify Observer<br> 规定条件重新评估的时机</td>
 <td>On Result Change&nbsp; 适用于范围性检测，当检测的值越界时进行重新评估该条件产生的结果 <br> On Value Change &nbsp;&nbsp; 适用于精确检测，当检测的值发生变化时进行重新评估该条件产生的结果</td>
 </tr>
@@ -208,12 +213,14 @@
 </tr>
 <tr>
 <td><br></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>Composite</strong> 通过 Composite Decorator 节点可设置比内置节点更高级的逻辑，但无法达到完整蓝图的复杂程度</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -221,7 +228,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Composite Name</td>
 <td>行为树图表中显示的节点名称</td>
 </tr>
@@ -231,12 +239,14 @@
 </tr>
 <tr>
 <td><br></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>Loop</strong> 循环指定的次数或无限循环</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -244,7 +254,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Num Loops</td>
 <td>循环的次数</td>
 </tr>
@@ -258,12 +269,14 @@
 </tr>
 <tr>
 <td><br></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>Conditional Loop</strong> 带条件的循环，如果Blackboard上指定的键值满足条件则进行循环</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -271,7 +284,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Node Name</td>
 <td>行为树图表中显示的节点名称</td>
 </tr>
@@ -285,12 +299,14 @@
 </tr>
 <tr>
 <td><br></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>Cone Check</strong> 检测指定的位置或Actor是否在椎体范围内，返回bool结果</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -298,7 +314,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Cone Half Angle</td>
 <td>椎体的半角。对于90度的椎体而言，这个值应该设置为45度</td>
 </tr>
@@ -328,12 +345,14 @@
 </tr>
 <tr>
 <td><br></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>CoolDown</strong> 会锁定一个节点或分支的执行，直到冷却时间结束</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -341,7 +360,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Cool Down time</td>
 <td>Cooldown decorator 锁定此节点执行的冷却时间(以秒计算)</td>
 </tr>
@@ -355,12 +375,14 @@
 </tr>
 <tr>
 <td><br></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>Does Path Exist</strong> 确定路径是否可由以下两个矢量组成：Blackboard Key A 和 Blackboard Key B (判定SelfActor与TargetPawn是否存在一条可以到达的路径，返回bool结果)</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -368,7 +390,8 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Blackboard Key A</td>
 <td>路径中的第一个位置</td>
 </tr>
@@ -398,12 +421,14 @@
 </tr>
 <tr>
 <td><br></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li><strong>Force Success</strong> 强制使所附着的节点返回执行成功结果</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -411,11 +436,14 @@
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Node Name</td>
 <td>行为树图表中显示的节点名称</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 </blockquote>
 </blockquote>
 <h4 id="Services"><a href="#Services" class="headerlink" title="Services"></a><strong>Services</strong></h4><blockquote>
@@ -424,28 +452,19 @@
 <p><strong>Service中的常用事件</strong></p>
 <blockquote>
 <ul>
-<li><strong>Event Receive Search Start / Event Receive Search AI</strong><br>在任务搜索进入树的分支时被调用。比如有一个父节点A，其下面有两个子节点B和C，当任务搜索进入A时调用A的Service中的Search Start，如果A完成或者被打断，当任务搜索进入B时，将再次调用A的Service中的Search Start<br><font color=red><em>如果同时存在 Event Receive Search Start 和 Event Receive Search Start AI 两个事件，优先执行 Event Receive Search Start AI 事件</em></font><br></li>
+<li><strong>Event Receive Search Start / Event Receive Search AI</strong><br>在任务搜索进入树的分支时被调用。比如有一个父节点A，其下面有两个子节点B和C，当任务搜索进入A时调用A的Service中的Search Start，如果A完成或者被打断，当任务搜索进入B时，将再次调用A的Service中的Search Start<br><font color=red><em>如果同时存在 Event Receive Search Start 和 Event Receive Search Start AI 两个事件，优先执行 Event Receive Search Start AI 事件</em></font><br><br></li>
 </ul>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
 <ul>
-<li><strong>Event Receive Activation / Event Receive Activation AI</strong><br>在某节点从非活动子树的一部分变为活动子树的一部分时触发<br><font color=red><em>如果同时存在 Event Receive Activation 和 Event Receive Activation AI 两个事件，优先执行 Event Receive Activation AI 事件</em></font><br></li>
+<li><strong>Event Receive Activation / Event Receive Activation AI</strong><br>在某节点从非活动子树的一部分变为活动子树的一部分时触发<br><font color=red><em>如果同时存在 Event Receive Activation 和 Event Receive Activation AI 两个事件，优先执行 Event Receive Activation AI 事件</em></font><br><br></li>
 </ul>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
 <ul>
-<li><strong>Event Receive Deactivation / Event Receive Deactivation AI</strong><br>在某节点从活动子树的一部分变为非活动子树的一部分时触发<br><font color=red><em>如果同时存在 Event Receive Deactivation 和 Event Receive Deactivation AI 两个事件，优先执行 Event Receive Deactivation AI 事件</em></font><br></li>
+<li><strong>Event Receive Deactivation / Event Receive Deactivation AI</strong><br>在某节点从活动子树的一部分变为非活动子树的一部分时触发<br><font color=red><em>如果同时存在 Event Receive Deactivation 和 Event Receive Deactivation AI 两个事件，优先执行 Event Receive Deactivation AI 事件</em></font><br><br></li>
 </ul>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
 <ul>
-<li><strong>Event Receive Tick / Event Receive Tick AI</strong><br>当Service所在的节点是活动子树的一部分时，Tick事件将以指定的频率调用，Tick的触发时间间隔由所在Service的Interval和Random Deviation属性共同决定，Interval指定基础时间间隔，Random Deviation指定在基础时间间隔上的随机误差<br><font color=red><em>如果同时存在 Event Receive Tick 和 Event Receive Tick AI 两个事件，优先执行 Event Receive Tick AI 事件</em></font></li>
+<li><strong>Event Receive Tick / Event Receive Tick AI</strong><br>当Service所在的节点是活动子树的一部分时，Tick事件将以指定的频率调用，Tick的触发时间间隔由所在Service的Interval和Random Deviation属性共同决定，Interval指定基础时间间隔，Random Deviation指定在基础时间间隔上的随机误差<font color=red>*如果同时存在 Event Receive Tick 和 Event Receive Tick AI 两个事件，优先执行 Event Receive Tick AI 事件*</font>
+
+
+</li>
 </ul>
 </blockquote>
 </blockquote>
@@ -511,7 +530,7 @@
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
  
 
-<script src="/js/app.js?v=1618237610903"></script>
+<script src="/js/app.js?v=1618274632485"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
