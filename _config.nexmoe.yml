@@ -34,7 +34,7 @@ menu:
     - icon-info-circle
   我的简历:
     - /resume/resume_java.html
-    - icon-info-circle
+    - icon-unorderedlist
 
 social:
   QQ群: 
@@ -55,10 +55,5 @@ social:
   GitHub:
     - https://github.com/303snowing/
     - icon-github
-    - rgb(25, 23, 23)
-    - rgba(25, 23, 23, .15)
-  CSDN:
-    - http://blog.csdn.net/u012793104?viewmode=list
-    - icon-csdn1
     - rgb(25, 23, 23)
     - rgba(25, 23, 23, .15)
