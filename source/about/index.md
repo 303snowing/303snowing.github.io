@@ -11,4 +11,4 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/bg.j
 
 ---
 
-# 还在更新啦
+*  CSDN: <http://blog.csdn.net/u012793104?viewmode=list>
