@@ -20,9 +20,9 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/foot
 
 1. 下载二进制包
 
-下载地址：<https://studygolang.com/dl> ，下载`gox.x.x.windows-amd64.zip`文件到电脑上
+    下载地址：<https://studygolang.com/dl> ，下载`gox.x.x.windows-amd64.zip`文件到电脑上
 
-![image-20210414134833354](https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png)
+    ![image-20210414134833354](https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png)
 
 2. 解压到指定目录，如`D:/go`，解压后如图所示
 
@@ -34,7 +34,7 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/foot
 
         打开cmd，执行`go env`命令，将打印的结果复制到`D:\go\env`文件中，删除所有的`set`命令，只保留`KEY=VALUE`格式的变量，如下内容，根据自己的go解压路径自行调整
 
-        ```
+        ```bash
         GO111MODULE=
         GOARCH=amd64
         GOBIN=
@@ -72,21 +72,18 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/foot
         PKG_CONFIG=pkg-config
         ```
 
-        
+    * 需要配置的环境变量：
+        * PATH：添加D:\go\bin
 
-    需要配置的环境变量：
+            ![image-20210414135654765](https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135654765.png)
 
-    * PATH：添加D:\go\bin
+        * GOENV=D:\go\env
 
-        ![image-20210414135654765](https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135654765.png)
-
-    * GOENV=D:\go\env
-
-        ![image-20210414135828882](https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135828882.png)
+            ![image-20210414135828882](https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135828882.png)
 
 4. **查看环境变量应该如下打印**
 
-    ```cmd
+    ```bash
     C:\Users\xxx>go env
     set GO111MODULE=
     set GOARCH=amd64
@@ -148,7 +145,7 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/foot
         	"github.com/gogf/gf"
         )
         
-        func main()  {
+        func main() {
         	fmt.Println("hello GF", gf.VERSION)
         }
         ```
