@@ -137,7 +137,7 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/foot
 
     3. 编写测试代码
 
-        ```go
+        ```golang
         package main
         
         import (
