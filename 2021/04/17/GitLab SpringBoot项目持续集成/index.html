@@ -12,15 +12,15 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="所有的环境都是基于docker的，我会给出涉及到的docker-compose.yml编排文件，使用docker-compose工具可以方便的拉起容器">
+  <meta name="description" content="所有的环境都是基于docker的，我会给出涉及到的docker-compose.yml编排文件，使用docker-compose工具可以方便的拉起容器 可以使用vscode的remote ssh功能对服务器上的文件进行方便的远程编辑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitLab SpringBoot项目持续集成">
 <meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2021/04/17/GitLab%20SpringBoot%E9%A1%B9%E7%9B%AE%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/">
 <meta property="og:site_name" content="303snowing">
-<meta property="og:description" content="所有的环境都是基于docker的，我会给出涉及到的docker-compose.yml编排文件，使用docker-compose工具可以方便的拉起容器">
+<meta property="og:description" content="所有的环境都是基于docker的，我会给出涉及到的docker-compose.yml编排文件，使用docker-compose工具可以方便的拉起容器 可以使用vscode的remote ssh功能对服务器上的文件进行方便的远程编辑">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-17T06:47:32.000Z">
-<meta property="article:modified_time" content="2021-04-17T09:49:53.277Z">
+<meta property="article:modified_time" content="2021-04-18T00:50:19.150Z">
 <meta property="article:author" content="303snowing">
 <meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="GitLab">
@@ -32,7 +32,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2492588_6aklf99w93e.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1618653004849">
+  <link rel="stylesheet" href="/css/style.css?v=1618757905068">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -241,7 +241,7 @@
             <div class="nexmoe-toc">
                 
                 
-                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">服务器安装Docker环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">准备</span></a></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85Docker%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">服务器安装Docker环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87GitLab%E7%8E%AF%E5%A2%83%E5%92%8Cgitlab-runner"><span class="toc-number">2.</span> <span class="toc-text">准备GitLab环境和gitlab-runner</span></a></li></ol>
                 
             </div>
         </div>
@@ -259,11 +259,12 @@
     
     <div class="nexmoe-post-meta nexmoe-rainbow-fill" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月17日</a>
-    <a><i class="nexmoefont icon-areachart"></i>248 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>658 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
 </div>
 
     <p><strong>所有的环境都是基于docker的</strong>，我会给出涉及到的docker-compose.yml编排文件，使用docker-compose工具可以方便的拉起容器</p>
+<p><em>可以使用vscode的<code>remote ssh</code>功能对服务器上的文件进行方便的远程编辑</em></p>
 <span id="more"></span>
 <h1 id="服务器安装Docker环境"><a href="#服务器安装Docker环境" class="headerlink" title="服务器安装Docker环境"></a>服务器安装Docker环境</h1><ol>
 <li><p>直接看官方文档就行：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">https://docs.docker.com/engine/install/</a></p>
@@ -314,7 +315,72 @@ OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019</code></pre>
 </ol>
 </li>
 </ol>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1>
+<h1 id="准备GitLab环境和gitlab-runner"><a href="#准备GitLab环境和gitlab-runner" class="headerlink" title="准备GitLab环境和gitlab-runner"></a>准备GitLab环境和gitlab-runner</h1><ul>
+<li><p>GitLab</p>
+<p>  在任意目录添加<code>gitlab</code>文件夹，进入<code>gitlab</code>文件夹新建<code>docker-compose.yml</code>，写入如下内容</p>
+  <pre><code class="hljs yaml"><span class="hljs-attr">version:</span> <span class="hljs-string">&quot;3&quot;</span>
+
+<span class="hljs-attr">services:</span>
+  <span class="hljs-attr">web:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">&#x27;gitlab/gitlab-ce&#x27;</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">&#x27;gitlab&#x27;</span>
+    <span class="hljs-attr">restart:</span> <span class="hljs-string">always</span>
+    <span class="hljs-attr">hostname:</span> <span class="hljs-string">&#x27;git.yourdomain&#x27;</span>
+    <span class="hljs-attr">environment:</span>
+      <span class="hljs-attr">GITLAB_OMNIBUS_CONFIG:</span> <span class="hljs-string">|</span>
+        <span class="hljs-string">external_url</span> <span class="hljs-string">&quot;https://git.yourdomain&quot;</span>
+        <span class="hljs-string">unicorn[&#x27;port&#x27;]=8081</span>
+        <span class="hljs-comment"># 启用大文件支持</span>
+        <span class="hljs-string">gitlab_rails[&#x27;lfs_enabled&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+        <span class="hljs-comment"># ssh协议使用的访问地址和端口</span>
+        <span class="hljs-string">gitlab_rails[&#x27;gitlab_ssh_host&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&#x27;git.yourdomain&#x27;</span>
+        <span class="hljs-string">gitlab_rails[&#x27;gitlab_shell_ssh_port&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-number">22</span>
+        <span class="hljs-comment"># 邮件配置</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_enable&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span> 
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_address&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;mail.yourdomain&quot;</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_port&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-number">25</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_user_name&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;git&quot;</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_password&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;your gitlab notify mail pass&quot;</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_domain&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;mail.yourdomain&quot;</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_authentication&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;login&quot;</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_enable_starttls_auto&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+        <span class="hljs-string">gitlab_rails[&#x27;smtp_tls&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+        <span class="hljs-string">gitlab_rails[&#x27;gitlab_email_enabled&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+        <span class="hljs-string">gitlab_rails[&#x27;gitlab_email_from&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;git@yourdomain&quot;</span>
+        <span class="hljs-string">gitlab_rails[&#x27;gitlab_email_display_name&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;git@yourdomain&quot;</span>
+        <span class="hljs-comment"># 启用https支持</span>
+        <span class="hljs-string">nginx[&#x27;enable&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+        <span class="hljs-string">nginx[&#x27;client_max_body_size&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&#x27;1024m&#x27;</span>
+        <span class="hljs-string">nginx[&#x27;redirect_http_to_https&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+        <span class="hljs-string">nginx[&#x27;redirect_http_to_https_port&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-number">80</span>
+        <span class="hljs-string">nginx[&#x27;redirect_http_to_https&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+        <span class="hljs-comment">#nginx[&#x27;redirect_http_to_https_port&#x27;] = 443</span>
+        <span class="hljs-string">nginx[&#x27;ssl_certificate&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;/var/ssl/yourdomain.crt&quot;</span>
+        <span class="hljs-string">nginx[&#x27;ssl_certificate_key&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;/var/ssl/yourdoamin.key&quot;</span>
+        <span class="hljs-string">nginx[&#x27;ssl_ciphers&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256&quot;</span>
+        <span class="hljs-string">nginx[&#x27;ssl_prefer_server_ciphers&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;on&quot;</span>
+        <span class="hljs-string">nginx[&#x27;ssl_protocols&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;TLSv1.1 TLSv1.2 TLSv1.3&quot;</span>
+        <span class="hljs-string">nginx[&#x27;ssl_session_cache&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-string">&quot;builtin:1000  shared:SSL:10m&quot;</span>
+        <span class="hljs-string">nginx[&#x27;listen_addresses&#x27;]</span> <span class="hljs-string">=</span> [<span class="hljs-string">&quot;0.0.0.0&quot;</span>]
+        <span class="hljs-string">nginx[&#x27;http2_enabled&#x27;]</span> <span class="hljs-string">=</span> <span class="hljs-literal">true</span>
+
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-number">80</span><span class="hljs-string">:80</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-number">443</span><span class="hljs-string">:443</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/ext_data/docker_data/gitlab/ssl:/var/ssl</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/ext_data/docker_data/gitlab/etc:/etc/gitlab:rw</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/ext_data/docker_data/gitlab/logs:/var/log/gitlab:rw</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/ext_data/docker_data/gitlab/data:/var/opt/gitlab:rw</span>
+</code></pre>
+<p>  文件中需要修改的地方：</p>
+<ul>
+<li><code>yourdomain</code>是你自己的域名，没有的话直接填写gitlab服务器</li>
+<li><code>yourdomain.crt</code>和<code>yourdomain.key</code>分别是yu’my</li>
+</ul>
+</li>
+</ul>
+
   </article>
 
   
@@ -381,7 +447,7 @@ OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019</code></pre>
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
  
 
-<script src="/js/app.js?v=1618653004861"></script>
+<script src="/js/app.js?v=1618757905077"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
