@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>golang环境配置 - 303snowing</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="303snowing的博客">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+  <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
+  <meta name="description" content="官方网站 中文文档：http:&#x2F;&#x2F;docscn.studygolang.com&#x2F; go语言中文网：https:&#x2F;&#x2F;studygolang.com&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="golang环境配置">
+<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+<meta property="og:site_name" content="303snowing">
+<meta property="og:description" content="官方网站 中文文档：http:&#x2F;&#x2F;docscn.studygolang.com&#x2F; go语言中文网：https:&#x2F;&#x2F;studygolang.com&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135008377.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135654765.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135828882.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414141427103.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143048002.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143318911.png">
+<meta property="article:published_time" content="2021-04-14T05:31:30.000Z">
+<meta property="article:modified_time" content="2021-11-20T03:16:21.373Z">
+<meta property="article:author" content="303snowing">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="golang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2492588_6aklf99w93e.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1637382835352">
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/bg.jpeg)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="303snowing" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/head-icon.jpg" alt="303snowing"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="303snowing">
+            <img src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/head-icon.jpg" alt="303snowing" alt="303snowing">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>5</div>
+        <div><span>标签</span>7</div>
+        <div><span>分类</span>5</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/resume/resume_java" title="我的简历">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的简历
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:303snowing.github.io" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div>
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=jXaWd3W3" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="/null" target="_blank" mdui-tooltip="{content: '&lt;img src=https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/wechat.png width=100 height=100/&gt;'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-wechat-fill"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/176335655" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/303snowing/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/JAVA/">JAVA</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Kali-Linux/">Kali Linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Unreal-Engine-4/">Unreal Engine 4</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/golang/">golang</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/hexo/">hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/tags/GitLab/" style="font-size: 10px;">GitLab</a> <a href="/tags/SpringBoot/" style="font-size: 10px;">SpringBoot</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E8%A1%8C%E4%B8%BA%E6%A0%91/" style="font-size: 10px;">行为树</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/17/GitLab%20SpringBoot%E9%A1%B9%E7%9B%AE%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/">GitLab SpringBoot项目持续集成</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">golang环境配置</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/13/hexo%E6%90%AD%E5%BB%BA/">hexo搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/13/Kali-arp-crack/">Kali arp crack</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/">UE4行为树简记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 303snowing
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/theme-nexmoe/hexo-theme-nexmoe" target="_blank">Nexmoe</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E7%BD%91%E7%AB%99"><span class="toc-number">1.</span> <span class="toc-text">官方网站</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85golang%E7%8E%AF%E5%A2%83%EF%BC%88%E4%BD%BF%E7%94%A8zip%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85%EF%BC%8CWindows10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">安装golang环境（使用zip方式安装，Windows10操作系统）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEgoland"><span class="toc-number">3.</span> <span class="toc-text">配置goland</span></a></li></ol>
+                
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    
+        <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+            <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/footer-gopher.jpg" data-sizes="auto" alt="golang环境配置" class="lazyload">
+            <h1>golang环境配置</h1>
+        </div>
+    
+    
+    <div class="nexmoe-post-meta nexmoe-rainbow-fill" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月14日</a>
+    <a><i class="nexmoefont icon-areachart"></i>529 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+</div>
+
+    <h1 id="官方网站"><a href="#官方网站" class="headerlink" title="官方网站"></a>官方网站</h1><ul>
+<li>中文文档：<a target="_blank" rel="noopener" href="http://docscn.studygolang.com/">http://docscn.studygolang.com/</a></li>
+<li>go语言中文网：<a target="_blank" rel="noopener" href="https://studygolang.com/">https://studygolang.com/</a></li>
+</ul>
+<span id="more"></span>
+<h1 id="安装golang环境（使用zip方式安装，Windows10操作系统）"><a href="#安装golang环境（使用zip方式安装，Windows10操作系统）" class="headerlink" title="安装golang环境（使用zip方式安装，Windows10操作系统）"></a>安装golang环境（使用zip方式安装，Windows10操作系统）</h1><ol>
+<li><p>下载二进制包</p>
+<p> 下载地址：<a target="_blank" rel="noopener" href="https://studygolang.com/dl">https://studygolang.com/dl</a> ，下载<code>gox.x.x.windows-amd64.zip</code>文件到电脑上</p>
+<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png" alt="image-20210414134833354" class="lazyload"></p>
+</li>
+<li><p>解压到指定目录，如<code>D:/go</code>，解压后如图所示</p>
+<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135008377.png" alt="image-20210414135008377" class="lazyload"></p>
+</li>
+<li><p>配置环境变量</p>
+<ul>
+<li><p>创建<code>D:\go\env</code>文件，存放go的环境变量</p>
+<p>  打开cmd，执行<code>go env</code>命令，将打印的结果复制到<code>D:\go\env</code>文件中，删除所有的<code>set</code>命令，只保留<code>KEY=VALUE</code>格式的变量，如下内容，根据自己的go解压路径自行调整</p>
+  <pre><code class="hljs bash">GO111MODULE=
+GOARCH=amd64
+GOBIN=
+GOCACHE=D:\go-build
+GOENV=D:\go\env
+GOEXE=.exe
+GOFLAGS=
+GOHOSTARCH=amd64
+GOHOSTOS=windows
+GOINSECURE=
+GOMODCACHE=D:\go\pkg\mod
+GONOPROXY=
+GONOSUMDB=
+GOOS=windows
+GOPATH=D:\go
+GOPRIVATE=
+GOPROXY=https://goproxy.cn
+GOROOT=D:\go
+GOSUMDB=sum.golang.org
+GOTMPDIR=
+GOTOOLDIR=D:\go\pkg\tool\windows_amd64
+GOVCS=
+GOVERSION=go1.16.3
+GCCGO=gccgo
+AR=ar
+CC=gcc
+CXX=g++
+CGO_ENABLED=1
+GOMOD=NUL
+CGO_CFLAGS=-g -O2
+CGO_CPPFLAGS=
+CGO_CXXFLAGS=-g -O2
+CGO_FFLAGS=-g -O2
+CGO_LDFLAGS=-g -O2
+PKG_CONFIG=pkg-config</code></pre>
+</li>
+<li><p>需要配置的环境变量：</p>
+<ul>
+<li><p>PATH：添加D:\go\bin</p>
+<p>  <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135654765.png" alt="image-20210414135654765" class="lazyload"></p>
+</li>
+<li><p>GOENV=D:\go\env</p>
+<p>  <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135828882.png" alt="image-20210414135828882" class="lazyload"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>查看环境变量应该如下打印</strong></p>
+ <pre><code class="hljs bash">C:\Users\xxx&gt;go env
+<span class="hljs-built_in">set</span> GO111MODULE=
+<span class="hljs-built_in">set</span> GOARCH=amd64
+<span class="hljs-built_in">set</span> GOBIN=
+<span class="hljs-built_in">set</span> GOCACHE=D:\go-build
+<span class="hljs-built_in">set</span> GOENV=D:\go\env
+<span class="hljs-built_in">set</span> GOEXE=.exe
+<span class="hljs-built_in">set</span> GOFLAGS=
+<span class="hljs-built_in">set</span> GOHOSTARCH=amd64
+<span class="hljs-built_in">set</span> GOHOSTOS=windows
+<span class="hljs-built_in">set</span> GOINSECURE=
+<span class="hljs-built_in">set</span> GOMODCACHE=D:\go\pkg\mod
+<span class="hljs-built_in">set</span> GONOPROXY=
+<span class="hljs-built_in">set</span> GONOSUMDB=
+<span class="hljs-built_in">set</span> GOOS=windows
+<span class="hljs-built_in">set</span> GOPATH=D:\go
+<span class="hljs-built_in">set</span> GOPRIVATE=
+<span class="hljs-built_in">set</span> GOPROXY=https://goproxy.cn
+<span class="hljs-built_in">set</span> GOROOT=D:\go
+<span class="hljs-built_in">set</span> GOSUMDB=sum.golang.org
+<span class="hljs-built_in">set</span> GOTMPDIR=
+<span class="hljs-built_in">set</span> GOTOOLDIR=D:\go\pkg\tool\windows_amd64
+<span class="hljs-built_in">set</span> GOVCS=
+<span class="hljs-built_in">set</span> GOVERSION=go1.16.3
+<span class="hljs-built_in">set</span> GCCGO=gccgo
+<span class="hljs-built_in">set</span> AR=ar
+<span class="hljs-built_in">set</span> CC=gcc
+<span class="hljs-built_in">set</span> CXX=g++
+<span class="hljs-built_in">set</span> CGO_ENABLED=1
+<span class="hljs-built_in">set</span> GOMOD=NUL
+<span class="hljs-built_in">set</span> CGO_CFLAGS=-g -O2
+<span class="hljs-built_in">set</span> CGO_CPPFLAGS=
+<span class="hljs-built_in">set</span> CGO_CXXFLAGS=-g -O2
+<span class="hljs-built_in">set</span> CGO_FFLAGS=-g -O2
+<span class="hljs-built_in">set</span> CGO_LDFLAGS=-g -O2
+<span class="hljs-built_in">set</span> PKG_CONFIG=pkg-config
+<span class="hljs-built_in">set</span> GOGCCFLAGS=-m64 -mthreads -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=C:\Users\303sn\AppData\Local\Temp\go-build3612435218=/tmp/go-build -gno-record-gcc-switches</code></pre>
+</li>
+</ol>
+<h1 id="配置goland"><a href="#配置goland" class="headerlink" title="配置goland"></a>配置goland</h1><ul>
+<li><p>goland自行下载：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/go/">https://www.jetbrains.com/go/</a></p>
+<ol>
+<li><p>使用<code>go module</code>方式新建项目，路径名字自行定义</p>
+</li>
+<li><p>创建完成后如图</p>
+<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414141427103.png" alt="image-20210414141427103" class="lazyload"></p>
+</li>
+<li><p>编写测试代码</p>
+ <pre><code class="hljs golang"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+  <span class="hljs-string">&quot;fmt&quot;</span>
+  <span class="hljs-string">&quot;github.com/gogf/gf&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
+  fmt.Println(<span class="hljs-string">&quot;hello GF&quot;</span>, gf.VERSION)
+&#125;</code></pre>
+</li>
+<li><p>同步依赖，鼠标右击<code>go.mod</code>文件，点击<code>Sync Go Module</code>同步按钮同步依赖</p>
+<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143048002.png" alt="image-20210414143048002" class="lazyload"></p>
+</li>
+<li><p>运行</p>
+<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143318911.png" alt="image-20210414143318911" class="lazyload"></p>
+</li>
+</ol>
+</li>
+</ul>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>303snowing<br>
+    <strong>本文链接：</strong><a href="https://github.com/303snowing/303snowing.github.io/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2021&#x2F;04&#x2F;14&#x2F;golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2021&#x2F;04&#x2F;14&#x2F;golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/golang/">golang</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/golang/" rel="tag">golang</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '4a3e8f198a01684edff6',
+        clientSecret: 'b98da32dd0145a9e1e4aad8dc5912b97312895dc',
+        id: decodeURI(window.location.pathname),
+        repo: '303snowing.github.io',
+        owner: '303snowing',
+        admin: '303snowing',
+        title: 'golang环境配置',
+        distractionFreeMode: ''
+    })
+    gitalk.render('gitalk')
+</script>
+</section>
+  </div>
+</div>
+        <div class="nexmoe-post-right">
+          <div class="nexmoe-fixed">
+            <div class="nexmoe-tool">
+              <a href="#nexmoe-content" class="toc-link" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
+ 
+
+<script src="/js/app.js?v=1637382835352"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+</body>
+
+</html>
