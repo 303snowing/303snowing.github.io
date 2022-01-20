@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>文章归档 - 303snowing</title>
+  <title>Kubernetes设计理念 - 303snowing</title>
   <meta charset="UTF-8">
   <meta name="description" content="303snowing的博客">
   <meta name="keywords" content="">
@@ -13,21 +13,24 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="303snowing的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="303snowing">
-<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/archives/">
+  <meta name="description" content="API设计原则对于云计算系统，系统API实际上处于系统设计的统领地位，正如本文前面所说，K8s集群系统每支持一项新功能，引入一项新技术，一定会新引入对应的API对象，支持对该功能的管理操作，理解掌握的API，就好比抓住了K8s系统的牛鼻子。K8s系统API的设计有以下几条原则：  所有API应该是声明式的。正如前文所说，声明式的操作，相对于命令式操作，对于重复操作的效果是稳定的，这对于容易出现数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes设计理念">
+<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2022/01/20/Kubernetes%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5/">
 <meta property="og:site_name" content="303snowing">
-<meta property="og:description" content="303snowing的博客">
+<meta property="og:description" content="API设计原则对于云计算系统，系统API实际上处于系统设计的统领地位，正如本文前面所说，K8s集群系统每支持一项新功能，引入一项新技术，一定会新引入对应的API对象，支持对该功能的管理操作，理解掌握的API，就好比抓住了K8s系统的牛鼻子。K8s系统API的设计有以下几条原则：  所有API应该是声明式的。正如前文所说，声明式的操作，相对于命令式操作，对于重复操作的效果是稳定的，这对于容易出现数据">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-20T08:07:55.000Z">
+<meta property="article:modified_time" content="2022-01-20T09:38:39.566Z">
 <meta property="article:author" content="303snowing">
+<meta property="article:tag" content="K8S">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-  <link rel="stylesheet" href="/css/style.css?v=1642671528164">
+  <link rel="stylesheet" href="/css/style.css?v=1642671528160">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2492588_6aklf99w93e.css">
   
-  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1642671528164">
+  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1642671528160">
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -227,50 +230,25 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <section class="nexmoe-posts">
+        <div class="nexmoe-post">
+
+  <article>
     
-    <div class="nexmoe-post">
-        <a href="/2022/01/20/Kubernetes%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="Kubernetes基本概念" class="lazyload">
-                    <h1>Kubernetes基本概念</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月20日</a>
-            <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+        <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+            <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="Kubernetes设计理念" class="lazyload">
+            <h1>Kubernetes设计理念</h1>
         </div>
-
-        <article>
-            
-                <h1 id="Kubernetes是什么"><a href="#Kubernetes是什么" class="headerlink" title="Kubernetes是什么"></a>Kubernetes是什么</h1><p>Kubernetes是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。</p>
-            
-        </article>
-    </div>
     
-    <div class="nexmoe-post">
-        <a href="/2022/01/20/Kubernetes%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="Kubernetes设计理念" class="lazyload">
-                    <h1>Kubernetes设计理念</h1>
-                </div>
-            
-        </a>
+    
+    <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月20日</a>
+    <a><i class="nexmoefont icon-areachart"></i>5.8k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 23 分钟</a>
+</div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月20日</a>
-            <a><i class="nexmoefont icon-areachart"></i>5.8k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 23 分钟</a>
-        </div>
+    
 
-        <article>
-            
-                <h1 id="API设计原则"><a href="#API设计原则" class="headerlink" title="API设计原则"></a>API设计原则</h1><p>对于云计算系统，系统API实际上处于系统设计的统领地位，正如本文前面所说，K8s集群系统每支持一项新功能，引入一项新技术，一定会新引入对应的API对象，支持对该功能的管理操作，理解掌握的API，就好比抓住了K8s系统的牛鼻子。K8s系统API的设计有以下几条原则：</p>
+    <h1 id="API设计原则"><a href="#API设计原则" class="headerlink" title="API设计原则"></a>API设计原则</h1><p>对于云计算系统，系统API实际上处于系统设计的统领地位，正如本文前面所说，K8s集群系统每支持一项新功能，引入一项新技术，一定会新引入对应的API对象，支持对该功能的管理操作，理解掌握的API，就好比抓住了K8s系统的牛鼻子。K8s系统API的设计有以下几条原则：</p>
 <ol>
 <li><strong>所有API应该是声明式的。</strong>正如前文所说，声明式的操作，相对于命令式操作，对于重复操作的效果是稳定的，这对于容易出现数据丢失或重复的分布式环境来说是很重要的。另外，声明式操作更容易被用户使用，可以使系统向用户隐藏实现的细节，隐藏实现的细节的同时，也就保留了系统未来持续优化的可能性。此外，声明式的API，同时隐含了所有的API对象都是名词性质的，例如Service、Volume这些API都是名词，这些名词描述了用户所期望得到的一个目标分布式对象。</li>
 <li><strong>API对象是彼此互补而且可组合的。</strong>这里面实际是鼓励API对象尽量实现面向对象设计时的要求，即“高内聚，松耦合”，对业务相关的概念有一个合适的分解，提高分解出来的对象的可重用性。事实上，K8s这种分布式系统管理平台，也是一种业务系统，只不过它的业务就是调度和管理容器服务。</li>
@@ -315,114 +293,49 @@
 <h2 id="RBAC访问授权"><a href="#RBAC访问授权" class="headerlink" title="RBAC访问授权"></a><a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/148.html">RBAC访问授权</a></h2><p>K8s在1.3版本中发布了alpha版的基于角色的访问控制（Role-based Access Control，RBAC）的授权模式。相对于基于属性的访问控制（Attribute-based Access Control，ABAC），RBAC主要是引入了角色（Role）和角色绑定（RoleBinding）的抽象概念。在<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/87.html">ABAC</a>中，K8s集群中的访问策略只能跟用户直接关联；而在RBAC中，访问策略可以跟某个角色关联，具体的用户在跟一个或多个角色相关联。显然，RBAC像其他新功能一样，每次引入新功能，都会引入新的API对象，从而引入新的概念抽象，而这一新的概念抽象一定会使集群服务管理和使用更容易扩展和重用。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>从K8s的系统架构、技术概念和设计理念，我们可以看到K8s系统最核心的两个设计理念：一个是容错性，一个是易扩展性。容错性实际是保证K8s系统稳定性和安全性的基础，易扩展性是保证K8s对变更友好，可以快速迭代增加新功能的基础。</p>
 
-            
-        </article>
-    </div>
+  </article>
+
+  
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/footer-gopher.jpg" data-sizes="auto" alt="golang环境配置" class="lazyload">
-                    <h1>golang环境配置</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月14日</a>
-            <a><i class="nexmoefont icon-areachart"></i>529 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-        </div>
-
-        <article>
-            
-                <h1 id="官方网站"><a href="#官方网站" class="headerlink" title="官方网站"></a>官方网站</h1><ul>
-<li>中文文档：<a target="_blank" rel="noopener" href="http://docscn.studygolang.com/">http://docscn.studygolang.com/</a></li>
-<li>go语言中文网：<a target="_blank" rel="noopener" href="https://studygolang.com/">https://studygolang.com/</a></li>
-</ul>
-            
-        </article>
-    </div>
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>303snowing<br>
+    <strong>本文链接：</strong><a href="https://github.com/303snowing/303snowing.github.io/2022/01/20/Kubernetes%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5/" title="https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;20&#x2F;Kubernetes%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;20&#x2F;Kubernetes%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5&#x2F;</a><br>
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/13/hexo%E6%90%AD%E5%BB%BA/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://twoyao.github.io/beautiful-hexo/hexo.png" data-sizes="auto" alt="hexo搭建" class="lazyload">
-                    <h1>hexo搭建</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月13日</a>
-            <a><i class="nexmoefont icon-areachart"></i>76 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
-        </div>
-
-        <article>
-            
-                <h1 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h1><ul>
-<li><p>官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
-            
-        </article>
-    </div>
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/13/Kali-arp-crack/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/1507053684582.jpg" data-sizes="auto" alt="Kali arp crack" class="lazyload">
-                    <h1>Kali arp crack</h1>
-                </div>
-            
-        </a>
+  </div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月13日</a>
-            <a><i class="nexmoefont icon-areachart"></i>866 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
-        </div>
 
-        <article>
-            
-                <h3 id="局域网断网攻击"><a href="#局域网断网攻击" class="headerlink" title="局域网断网攻击"></a>局域网断网攻击</h3><ul>
-<li>局域网ip扫描：</li>
-</ul>
-<blockquote>
-<p>fping -asg [host]<br>更多参数使用 fping -help</p>
-</blockquote>
-            
-        </article>
-    </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/bg.jpeg" data-sizes="auto" alt="UE4行为树简记" class="lazyload">
-                    <h1>UE4行为树简记</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月12日</a>
-            <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="UE4-AI行为树简记"><a href="#UE4-AI行为树简记" class="headerlink" title="UE4 AI行为树简记"></a>UE4 AI行为树简记</h2><hr>
-<h3 id="行为树节点-官方文档"><a href="#行为树节点-官方文档" class="headerlink" title="行为树节点 官方文档"></a>行为树节点 <a target="_blank" rel="noopener" href="https://docs.unrealengine.com/latest/CHN/Engine/AI/BehaviorTrees/NodeReference/index.html" title="行为树节点参考"><font size=2 color=green>官方文档</font></a></h3>
-            
-        </article>
-    </div>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/K8S/">K8S</a>
     
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/K8S/" rel="tag">K8S</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '4a3e8f198a01684edff6',
+        clientSecret: 'b98da32dd0145a9e1e4aad8dc5912b97312895dc',
+        id: window.location.pathname,
+        repo: '303snowing.github.io',
+        owner: '303snowing',
+        admin: '303snowing'
+    })
+    gitalk.render('gitalk')
+</script>
 </section>
-
+  </div>
+</div>
         <div class="nexmoe-post-right">
           <div class="nexmoe-fixed">
             <div class="nexmoe-tool"> 
@@ -443,7 +356,7 @@
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
  
 
-<script async src="/js/app.js?v=1642671528165"></script>
+<script async src="/js/app.js?v=1642671528161"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
