@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>文章归档：2021 - 303snowing</title>
+  <title>Kubernetes基本概念 - 303snowing</title>
   <meta charset="UTF-8">
   <meta name="description" content="303snowing的博客">
   <meta name="keywords" content="">
@@ -13,21 +13,24 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="303snowing的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="303snowing">
-<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/archives/2021/">
+  <meta name="description" content="Kubernetes是什么Kubernetes是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes基本概念">
+<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2022/01/20/Kubernetes%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
 <meta property="og:site_name" content="303snowing">
-<meta property="og:description" content="303snowing的博客">
+<meta property="og:description" content="Kubernetes是什么Kubernetes是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-20T08:36:23.000Z">
+<meta property="article:modified_time" content="2022-01-20T08:43:49.091Z">
 <meta property="article:author" content="303snowing">
+<meta property="article:tag" content="K8S">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-  <link rel="stylesheet" href="/css/style.css?v=1642668252658">
+  <link rel="stylesheet" href="/css/style.css?v=1642668252645">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2492588_6aklf99w93e.css">
   
-  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1642668252658">
+  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1642668252645">
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -227,112 +230,121 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <section class="nexmoe-posts">
+        <div class="nexmoe-post">
+
+  <article>
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/footer-gopher.jpg" data-sizes="auto" alt="golang环境配置" class="lazyload">
-                    <h1>golang环境配置</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月14日</a>
-            <a><i class="nexmoefont icon-areachart"></i>529 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+        <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+            <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="Kubernetes基本概念" class="lazyload">
+            <h1>Kubernetes基本概念</h1>
         </div>
+    
+    
+    <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月20日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
+</div>
 
-        <article>
-            
-                <h1 id="官方网站"><a href="#官方网站" class="headerlink" title="官方网站"></a>官方网站</h1><ul>
-<li>中文文档：<a target="_blank" rel="noopener" href="http://docscn.studygolang.com/">http://docscn.studygolang.com/</a></li>
-<li>go语言中文网：<a target="_blank" rel="noopener" href="https://studygolang.com/">https://studygolang.com/</a></li>
+    
+
+    <h1 id="Kubernetes是什么"><a href="#Kubernetes是什么" class="headerlink" title="Kubernetes是什么"></a>Kubernetes是什么</h1><p>Kubernetes是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。</p>
+<span id="more"></span>
+<p>通过Kubernetes你可以：</p>
+<ul>
+<li>快速部署应用</li>
+<li>快速扩展应用</li>
+<li>无缝对接新的应用功能</li>
+<li>节省资源，优化硬件资源的使用</li>
 </ul>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2021/04/13/hexo%E6%90%AD%E5%BB%BA/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://twoyao.github.io/beautiful-hexo/hexo.png" data-sizes="auto" alt="hexo搭建" class="lazyload">
-                    <h1>hexo搭建</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月13日</a>
-            <a><i class="nexmoefont icon-areachart"></i>76 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
-        </div>
-
-        <article>
-            
-                <h1 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h1><ul>
-<li><p>官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2021/04/13/Kali-arp-crack/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/1507053684582.jpg" data-sizes="auto" alt="Kali arp crack" class="lazyload">
-                    <h1>Kali arp crack</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月13日</a>
-            <a><i class="nexmoefont icon-areachart"></i>866 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
-        </div>
-
-        <article>
-            
-                <h3 id="局域网断网攻击"><a href="#局域网断网攻击" class="headerlink" title="局域网断网攻击"></a>局域网断网攻击</h3><ul>
-<li>局域网ip扫描：</li>
+<h1 id="Kubernetes-特点"><a href="#Kubernetes-特点" class="headerlink" title="Kubernetes 特点"></a>Kubernetes 特点</h1><ul>
+<li><strong>可移植</strong>: 支持公有云，私有云，混合云，多重云（multi-cloud）</li>
+<li><strong>可扩展</strong>: 模块化, 插件化, 可挂载, 可组合</li>
+<li><strong>自动化</strong>: 自动部署，自动重启，自动复制，自动伸缩/扩展</li>
 </ul>
-<blockquote>
-<p>fping -asg [host]<br>更多参数使用 fping -help</p>
-</blockquote>
-            
-        </article>
-    </div>
-    
-    <div class="nexmoe-post">
-        <a href="/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/bg.jpeg" data-sizes="auto" alt="UE4行为树简记" class="lazyload">
-                    <h1>UE4行为树简记</h1>
-                </div>
-            
-        </a>
+<p>容器优势总结：</p>
+<ul>
+<li><strong>快速创建/部署应用：</strong>与VM虚拟机相比，容器镜像的创建更加容易。</li>
+<li><strong>持续开发、集成和部署：</strong>提供可靠且频繁的容器镜像构建/部署，并使用快速和简单的回滚(由于镜像不可变性)。</li>
+<li><strong>开发和运行相分离：</strong>在build或者release阶段创建容器镜像，使得应用和基础设施解耦。</li>
+<li><strong>开发，测试和生产环境一致性：</strong>在本地或外网（生产环境）运行的一致性。</li>
+<li><strong>云平台或其他操作系统：</strong>可以在 Ubuntu、RHEL、 CoreOS、on-prem、Google Container Engine或其它任何环境中运行。</li>
+<li><strong>Loosely coupled，分布式，弹性，微服务化：</strong>应用程序分为更小的、独立的部件，可以动态部署和管理。</li>
+<li><strong>资源隔离</strong></li>
+<li><strong>资源利用：</strong>更高效</li>
+</ul>
+<h1 id="使用Kubernetes能做什么？"><a href="#使用Kubernetes能做什么？" class="headerlink" title="使用Kubernetes能做什么？"></a>使用Kubernetes能做什么？</h1><p>可以在物理或虚拟机的Kubernetes集群上运行容器化应用，Kubernetes能提供一个以“<strong>容器为中心的基础架构</strong>”，满足在生产环境中运行应用的一些常见需求，如：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/312.html">多个进程（作为容器运行）协同工作。</a>（Pod）</li>
+<li>存储系统挂载</li>
+<li>Distributing secrets</li>
+<li>应用健康检测</li>
+<li><a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/314.html">应用实例的复制</a></li>
+<li>Pod自动伸缩/扩展</li>
+<li>Naming and discovering</li>
+<li>负载均衡</li>
+<li>滚动更新</li>
+<li>资源监控</li>
+<li>日志访问</li>
+<li>调试应用程序</li>
+<li><a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/51.html">提供认证和授权</a></li>
+</ul>
+<h1 id="Kubernetes不是什么？"><a href="#Kubernetes不是什么？" class="headerlink" title="Kubernetes不是什么？"></a>Kubernetes不是什么？</h1><p>Kubernetes并不是传统的PaaS（平台即服务）系统。</p>
+<ul>
+<li>Kubernetes不限制支持应用的类型，不限制应用框架。不限制受支持的语言runtimes (例如, Java, Python, Ruby)，满足<a target="_blank" rel="noopener" href="https://12factor.net/">12-factor applications</a> 。不区分 “apps” 或者“services”。 Kubernetes支持不同负载应用，包括有状态、无状态、数据处理类型的应用。只要这个应用可以在容器里运行，那么就能很好的运行在Kubernetes上。</li>
+<li>Kubernetes不提供中间件（如message buses）、数据处理框架（如Spark）、数据库(如Mysql)或者集群存储系统(如Ceph)作为内置服务。但这些应用都可以运行在Kubernetes上面。</li>
+<li>Kubernetes不部署源码不编译应用。持续集成的 (CI)工作流方面，不同的用户有不同的需求和偏好的区域，因此，我们提供分层的 CI工作流，但并不定义它应该如何工作。</li>
+<li>Kubernetes允许用户选择自己的日志、监控和报警系统。</li>
+<li>Kubernetes不提供或授权一个全面的应用程序配置 语言/系统（例如，<a href="https://github.com/google/jsonnet">jsonnet</a>）。</li>
+<li>Kubernetes不提供任何机器配置、维护、管理或者自修复系统。</li>
+</ul>
+<p>另一方面，大量的Paas系统都可以运行在Kubernetes上，比如Openshift、Deis、Gondor。可以构建自己的Paas平台，与自己选择的CI系统集成。</p>
+<p>由于Kubernetes运行在应用级别而不是硬件级，因此提供了普通的Paas平台提供的一些通用功能，比如部署，扩展，负载均衡，日志，监控等。这些默认功能是可选的。</p>
+<p>另外，Kubernetes不仅仅是一个“编排系统”；它消除了编排的需要。“编排”的定义是指执行一个预定的工作流：先执行A，之B，然C。相反，Kubernetes由一组独立的可组合控制进程组成。怎么样从A到C并不重要，达到目的就好。当然集中控制也是必不可少，方法更像排舞的过程。这使得系统更加易用、强大、弹性和可扩展。</p>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月12日</a>
-            <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
-        </div>
+  </article>
 
-        <article>
-            
-                <h2 id="UE4-AI行为树简记"><a href="#UE4-AI行为树简记" class="headerlink" title="UE4 AI行为树简记"></a>UE4 AI行为树简记</h2><hr>
-<h3 id="行为树节点-官方文档"><a href="#行为树节点-官方文档" class="headerlink" title="行为树节点 官方文档"></a>行为树节点 <a target="_blank" rel="noopener" href="https://docs.unrealengine.com/latest/CHN/Engine/AI/BehaviorTrees/NodeReference/index.html" title="行为树节点参考"><font size=2 color=green>官方文档</font></a></h3>
-            
-        </article>
-    </div>
+  
     
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>303snowing<br>
+    <strong>本文链接：</strong><a href="https://github.com/303snowing/303snowing.github.io/2022/01/20/Kubernetes%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;20&#x2F;Kubernetes%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;20&#x2F;Kubernetes%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5&#x2F;</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/K8S/">K8S</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/K8S/" rel="tag">K8S</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '4a3e8f198a01684edff6',
+        clientSecret: 'b98da32dd0145a9e1e4aad8dc5912b97312895dc',
+        id: window.location.pathname,
+        repo: '303snowing.github.io',
+        owner: '303snowing',
+        admin: '303snowing'
+    })
+    gitalk.render('gitalk')
+</script>
 </section>
-
+  </div>
+</div>
         <div class="nexmoe-post-right">
           <div class="nexmoe-fixed">
             <div class="nexmoe-tool"> 
@@ -353,7 +365,7 @@
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
  
 
-<script async src="/js/app.js?v=1642668252659"></script>
+<script async src="/js/app.js?v=1642668252645"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
