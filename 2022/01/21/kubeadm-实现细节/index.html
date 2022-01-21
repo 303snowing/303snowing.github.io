@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>303snowing</title>
+  <title>kubeadm 实现细节 - 303snowing</title>
   <meta charset="UTF-8">
   <meta name="description" content="303snowing的博客">
   <meta name="keywords" content="">
@@ -13,21 +13,24 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="303snowing的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="303snowing">
-<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/">
+  <meta name="description" content="kubeadm init 和 kubeadm join 为从头开始创建一个 Kubernetes 集群的最佳实践共同提供了一个很好的用户体验。但是，kubeadm 如何 做到这一点可能并不明显。 核心设计原则使用 kubeadm init 和 kubeadm join 设置的集群应该：  安全： 它应该采用最新的最佳做法，如： 强制实施 RBAC 使用节点授权器 控制平面组件之间使用安全通信 AP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kubeadm 实现细节">
+<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2022/01/21/kubeadm-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82/">
 <meta property="og:site_name" content="303snowing">
-<meta property="og:description" content="303snowing的博客">
+<meta property="og:description" content="kubeadm init 和 kubeadm join 为从头开始创建一个 Kubernetes 集群的最佳实践共同提供了一个很好的用户体验。但是，kubeadm 如何 做到这一点可能并不明显。 核心设计原则使用 kubeadm init 和 kubeadm join 设置的集群应该：  安全： 它应该采用最新的最佳做法，如： 强制实施 RBAC 使用节点授权器 控制平面组件之间使用安全通信 AP">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-21T03:18:21.000Z">
+<meta property="article:modified_time" content="2022-01-21T08:43:53.187Z">
 <meta property="article:author" content="303snowing">
+<meta property="article:tag" content="K8S">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-  <link rel="stylesheet" href="/css/style.css?v=1642754665046">
+  <link rel="stylesheet" href="/css/style.css?v=1642754665033">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2492588_6aklf99w93e.css">
   
-  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1642754665046">
+  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1642754665033">
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -227,27 +230,25 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <section class="nexmoe-posts">
+        <div class="nexmoe-post">
+
+  <article>
     
-    <div class="nexmoe-post">
-        <a href="/2022/01/21/kubeadm-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="kubeadm 实现细节" class="lazyload">
-                    <h1>kubeadm 实现细节</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月21日</a>
-            <a><i class="nexmoefont icon-areachart"></i>7.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 32 分钟</a>
+        <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
+            <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="kubeadm 实现细节" class="lazyload">
+            <h1>kubeadm 实现细节</h1>
         </div>
+    
+    
+    <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>7.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 32 分钟</a>
+</div>
 
-        <article>
-            
-                <p>kubeadm init 和 kubeadm join 为从头开始创建一个 Kubernetes 集群的最佳实践共同提供了一个很好的用户体验。但是，kubeadm 如何 做到这一点可能并不明显。</p>
+    
+
+    <p>kubeadm init 和 kubeadm join 为从头开始创建一个 Kubernetes 集群的最佳实践共同提供了一个很好的用户体验。但是，kubeadm 如何 做到这一点可能并不明显。</p>
 <h1 id="核心设计原则"><a href="#核心设计原则" class="headerlink" title="核心设计原则"></a>核心设计原则</h1><p>使用 kubeadm init 和 kubeadm join 设置的集群应该：</p>
 <ul>
 <li>安全：<ul>
@@ -674,160 +675,49 @@
 <li>要使动态 kubelet 配置正常工作，应在 /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 中指定标志 <code>--dynamic-config-dir=/var/lib/kubelet/config/dynamic</code></li>
 </ol>
 
-            
-        </article>
-    </div>
+  </article>
+
+  
     
-    <div class="nexmoe-post">
-        <a href="/2022/01/20/Kubernetes%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="Kubernetes基本概念" class="lazyload">
-                    <h1>Kubernetes基本概念</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月20日</a>
-            <a><i class="nexmoefont icon-areachart"></i>1.5k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 6 分钟</a>
-        </div>
-
-        <article>
-            
-                <h1 id="Kubernetes是什么"><a href="#Kubernetes是什么" class="headerlink" title="Kubernetes是什么"></a>Kubernetes是什么</h1><p>Kubernetes是容器集群管理系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。</p>
-            
-        </article>
-    </div>
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>303snowing<br>
+    <strong>本文链接：</strong><a href="https://github.com/303snowing/303snowing.github.io/2022/01/21/kubeadm-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82/" title="https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;21&#x2F;kubeadm-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;21&#x2F;kubeadm-%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82&#x2F;</a><br>
     
-    <div class="nexmoe-post">
-        <a href="/2022/01/20/Kubernetes%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="Kubernetes设计理念" class="lazyload">
-                    <h1>Kubernetes设计理念</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月20日</a>
-            <a><i class="nexmoefont icon-areachart"></i>5.8k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 23 分钟</a>
-        </div>
-
-        <article>
-            
-                <h1 id="API设计原则"><a href="#API设计原则" class="headerlink" title="API设计原则"></a>API设计原则</h1><p>对于云计算系统，系统API实际上处于系统设计的统领地位，正如本文前面所说，K8s集群系统每支持一项新功能，引入一项新技术，一定会新引入对应的API对象，支持对该功能的管理操作，理解掌握的API，就好比抓住了K8s系统的牛鼻子。K8s系统API的设计有以下几条原则：</p>
-            
-        </article>
-    </div>
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/footer-gopher.jpg" data-sizes="auto" alt="golang环境配置" class="lazyload">
-                    <h1>golang环境配置</h1>
-                </div>
-            
-        </a>
+  </div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月14日</a>
-            <a><i class="nexmoefont icon-areachart"></i>529 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
-        </div>
 
-        <article>
-            
-                <h1 id="官方网站"><a href="#官方网站" class="headerlink" title="官方网站"></a>官方网站</h1><ul>
-<li>中文文档：<a target="_blank" rel="noopener" href="http://docscn.studygolang.com/">http://docscn.studygolang.com/</a></li>
-<li>go语言中文网：<a target="_blank" rel="noopener" href="https://studygolang.com/">https://studygolang.com/</a></li>
-</ul>
-            
-        </article>
-    </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/13/hexo%E6%90%AD%E5%BB%BA/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://twoyao.github.io/beautiful-hexo/hexo.png" data-sizes="auto" alt="hexo搭建" class="lazyload">
-                    <h1>hexo搭建</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月13日</a>
-            <a><i class="nexmoefont icon-areachart"></i>76 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
-        </div>
-
-        <article>
-            
-                <h1 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h1><ul>
-<li><p>官方文档：<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
-            
-        </article>
-    </div>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/K8S/">K8S</a>
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/13/Kali-arp-crack/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: NaN%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/1507053684582.jpg" data-sizes="auto" alt="Kali arp crack" class="lazyload">
-                    <h1>Kali arp crack</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月13日</a>
-            <a><i class="nexmoefont icon-areachart"></i>866 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
-        </div>
-
-        <article>
-            
-                <h3 id="局域网断网攻击"><a href="#局域网断网攻击" class="headerlink" title="局域网断网攻击"></a>局域网断网攻击</h3><ul>
-<li>局域网ip扫描：</li>
-</ul>
-<blockquote>
-<p>fping -asg [host]<br>更多参数使用 fping -help</p>
-</blockquote>
-            
-        </article>
-    </div>
     
-    <div class="nexmoe-post">
-        <a href="/2021/04/12/UE4%E8%A1%8C%E4%B8%BA%E6%A0%91%E7%AE%80%E8%AE%B0/">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 66.66666666666666%;"> 
-                    <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/bg.jpeg" data-sizes="auto" alt="UE4行为树简记" class="lazyload">
-                    <h1>UE4行为树简记</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月12日</a>
-            <a><i class="nexmoefont icon-areachart"></i>2.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 9 分钟</a>
-        </div>
-
-        <article>
-            
-                <h2 id="UE4-AI行为树简记"><a href="#UE4-AI行为树简记" class="headerlink" title="UE4 AI行为树简记"></a>UE4 AI行为树简记</h2><hr>
-<h3 id="行为树节点-官方文档"><a href="#行为树节点-官方文档" class="headerlink" title="行为树节点 官方文档"></a>行为树节点 <a target="_blank" rel="noopener" href="https://docs.unrealengine.com/latest/CHN/Engine/AI/BehaviorTrees/NodeReference/index.html" title="行为树节点参考"><font size=2 color=green>官方文档</font></a></h3>
-            
-        </article>
-    </div>
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/K8S/" rel="tag">K8S</a>
     
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.css">
+<div id="gitalk"></div>
+<script src="https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '4a3e8f198a01684edff6',
+        clientSecret: 'b98da32dd0145a9e1e4aad8dc5912b97312895dc',
+        id: window.location.pathname,
+        repo: '303snowing.github.io',
+        owner: '303snowing',
+        admin: '303snowing'
+    })
+    gitalk.render('gitalk')
+</script>
 </section>
-
+  </div>
+</div>
         <div class="nexmoe-post-right">
           <div class="nexmoe-fixed">
             <div class="nexmoe-tool"> 
@@ -848,7 +738,7 @@
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
  
 
-<script async src="/js/app.js?v=1642754665047"></script>
+<script async src="/js/app.js?v=1642754665034"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
