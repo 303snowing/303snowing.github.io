@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>golang环境配置 - 303snowing</title>
+  <title>Kubernete组件 - 303snowing</title>
   <meta charset="UTF-8">
   <meta name="description" content="303snowing的博客">
   <meta name="keywords" content="">
@@ -13,33 +13,24 @@
   
 
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-  <meta name="description" content="官方网站 中文文档：http:&#x2F;&#x2F;docscn.studygolang.com&#x2F; go语言中文网：https:&#x2F;&#x2F;studygolang.com&#x2F;">
+  <meta name="description" content="本文介绍了Kubernetes集群所需的各种二进制组件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="golang环境配置">
-<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+<meta property="og:title" content="Kubernete组件">
+<meta property="og:url" content="https://github.com/303snowing/303snowing.github.io/2022/01/24/Kubernete%E7%BB%84%E4%BB%B6/">
 <meta property="og:site_name" content="303snowing">
-<meta property="og:description" content="官方网站 中文文档：http:&#x2F;&#x2F;docscn.studygolang.com&#x2F; go语言中文网：https:&#x2F;&#x2F;studygolang.com&#x2F;">
+<meta property="og:description" content="本文介绍了Kubernetes集群所需的各种二进制组件。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135008377.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135654765.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135828882.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414141427103.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143048002.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143318911.png">
-<meta property="article:published_time" content="2021-04-14T05:31:30.000Z">
-<meta property="article:modified_time" content="2022-01-20T07:32:43.063Z">
+<meta property="article:published_time" content="2022-01-24T07:52:21.000Z">
+<meta property="article:modified_time" content="2022-01-25T06:20:21.919Z">
 <meta property="article:author" content="303snowing">
-<meta property="article:tag" content="编程">
-<meta property="article:tag" content="golang">
+<meta property="article:tag" content="K8S">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-  <link rel="stylesheet" href="/css/style.css?v=1643091640002">
+  <link rel="stylesheet" href="/css/style.css?v=1643091639998">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2492588_6aklf99w93e.css">
   
-  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1643091640002">
+  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1643091639998">
 <meta name="generator" content="Hexo 6.0.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -244,153 +235,66 @@
   <article>
     
         <div class="nexmoe-post-cover" style="padding-bottom: NaN%;"> 
-            <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/footer-gopher.jpg" data-sizes="auto" alt="golang环境配置" class="lazyload">
-            <h1>golang环境配置</h1>
+            <img data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/202201201613432.png" data-sizes="auto" alt="Kubernete组件" class="lazyload">
+            <h1>Kubernete组件</h1>
         </div>
     
     
     <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月14日</a>
-    <a><i class="nexmoefont icon-areachart"></i>529 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 2 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年01月24日</a>
+    <a><i class="nexmoefont icon-areachart"></i>859 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
 </div>
 
     
 
-    <h1 id="官方网站"><a href="#官方网站" class="headerlink" title="官方网站"></a>官方网站</h1><ul>
-<li>中文文档：<a target="_blank" rel="noopener" href="http://docscn.studygolang.com/">http://docscn.studygolang.com/</a></li>
-<li>go语言中文网：<a target="_blank" rel="noopener" href="https://studygolang.com/">https://studygolang.com/</a></li>
-</ul>
+    <p>本文介绍了Kubernetes集群所需的各种二进制组件。</p>
 <span id="more"></span>
-<h1 id="安装golang环境（使用zip方式安装，Windows10操作系统）"><a href="#安装golang环境（使用zip方式安装，Windows10操作系统）" class="headerlink" title="安装golang环境（使用zip方式安装，Windows10操作系统）"></a>安装golang环境（使用zip方式安装，Windows10操作系统）</h1><ol>
-<li><p>下载二进制包</p>
-<p> 下载地址：<a target="_blank" rel="noopener" href="https://studygolang.com/dl">https://studygolang.com/dl</a> ，下载<code>gox.x.x.windows-amd64.zip</code>文件到电脑上</p>
-<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414134833354.png" alt="image-20210414134833354" class="lazyload"></p>
-</li>
-<li><p>解压到指定目录，如<code>D:/go</code>，解压后如图所示</p>
-<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135008377.png" alt="image-20210414135008377" class="lazyload"></p>
-</li>
-<li><p>配置环境变量</p>
+<h1 id="Master-组件"><a href="#Master-组件" class="headerlink" title="Master 组件"></a>Master 组件</h1><p>Master组件提供集群的管理控制中心。</p>
+<p>Master组件可以在集群中任何节点上运行。但是为了简单起见，通常在一台VM/机器上启动所有Master组件，并且不会在此VM/机器上运行用户容器。请参考 <a target="_blank" rel="noopener" href="https://kubernetes.io/docs/admin/high-availability">构建高可用群集</a>以来构建multi-master-VM。</p>
+<h1 id="kube-apiserver"><a href="#kube-apiserver" class="headerlink" title="kube-apiserver"></a>kube-apiserver</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/admin/kube-apiserver">kube-apiserver</a>用于暴露Kubernetes API。任何的资源请求/调用操作都是通过kube-apiserver提供的接口进行。请参阅<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/admin/high-availability">构建高可用群集</a>。</p>
+<h1 id="ETCD"><a href="#ETCD" class="headerlink" title="ETCD"></a>ETCD</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/admin/etcd">etcd</a>是Kubernetes提供默认的存储系统，保存所有集群数据，使用时需要为etcd数据提供备份计划。</p>
+<h1 id="kube-controller-manager"><a href="#kube-controller-manager" class="headerlink" title="kube-controller-manager"></a>kube-controller-manager</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/admin/kube-controller-manager">kube-controller-manager</a>运行管理控制器，它们是集群中处理常规任务的后台线程。逻辑上，每个控制器是一个单独的进程，但为了降低复杂性，它们都被编译成单个二进制文件，并在单个进程中运行。</p>
+<p>这些控制器包括：</p>
 <ul>
-<li><p>创建<code>D:\go\env</code>文件，存放go的环境变量</p>
-<p>  打开cmd，执行<code>go env</code>命令，将打印的结果复制到<code>D:\go\env</code>文件中，删除所有的<code>set</code>命令，只保留<code>KEY=VALUE</code>格式的变量，如下内容，根据自己的go解压路径自行调整</p>
-  <pre><code class="hljs bash">GO111MODULE=
-GOARCH=amd64
-GOBIN=
-GOCACHE=D:\go-build
-GOENV=D:\go\env
-GOEXE=.exe
-GOFLAGS=
-GOHOSTARCH=amd64
-GOHOSTOS=windows
-GOINSECURE=
-GOMODCACHE=D:\go\pkg\mod
-GONOPROXY=
-GONOSUMDB=
-GOOS=windows
-GOPATH=D:\go
-GOPRIVATE=
-GOPROXY=https://goproxy.cn
-GOROOT=D:\go
-GOSUMDB=sum.golang.org
-GOTMPDIR=
-GOTOOLDIR=D:\go\pkg\tool\windows_amd64
-GOVCS=
-GOVERSION=go1.16.3
-GCCGO=gccgo
-AR=ar
-CC=gcc
-CXX=g++
-CGO_ENABLED=1
-GOMOD=NUL
-CGO_CFLAGS=-g -O2
-CGO_CPPFLAGS=
-CGO_CXXFLAGS=-g -O2
-CGO_FFLAGS=-g -O2
-CGO_LDFLAGS=-g -O2
-PKG_CONFIG=pkg-config</code></pre>
-</li>
-<li><p>需要配置的环境变量：</p>
+<li><a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/304.html">节点（Node）控制器</a>。</li>
+<li>副本（Replication）控制器：负责维护系统中每个副本中的pod。</li>
+<li>端点（Endpoints）控制器：填充Endpoints对象（即连接Services＆Pods）。</li>
+<li><a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/84.html">Service Account</a>和Token控制器：为新的<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/242.html">Namespace</a> 创建默认帐户访问API Token。</li>
+</ul>
+<h1 id="cloud-controller-manager"><a href="#cloud-controller-manager" class="headerlink" title="cloud-controller-manager"></a>cloud-controller-manager</h1><p>云控制器管理器负责与底层云提供商的平台交互。云控制器管理器是Kubernetes版本1.6中引入的，目前还是Alpha的功能。</p>
+<p>云控制器管理器仅运行云提供商特定的（controller loops）控制器循环。可以通过将<code>--cloud-provider</code> flag设置为<code>external</code>启动kube-controller-manager ，来禁用控制器循环。</p>
+<p>cloud-controller-manager 具体功能：</p>
 <ul>
-<li><p>PATH：添加D:\go\bin</p>
-<p>  <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135654765.png" alt="image-20210414135654765" class="lazyload"></p>
-</li>
-<li><p>GOENV=D:\go\env</p>
-<p>  <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414135828882.png" alt="image-20210414135828882" class="lazyload"></p>
-</li>
+<li>节点（Node）控制器</li>
+<li>路由（Route）控制器</li>
+<li>Service控制器</li>
+<li>卷（Volume）控制器</li>
 </ul>
-</li>
+<h1 id="kube-scheduler"><a href="#kube-scheduler" class="headerlink" title="kube-scheduler"></a>kube-scheduler</h1><p>kube-scheduler 监视新创建没有分配到<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/304.html">Node</a>的<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/312.html">Pod</a>，为Pod选择一个Node。</p>
+<h1 id="插件-addons"><a href="#插件-addons" class="headerlink" title="插件 addons"></a>插件 addons</h1><p>插件（addon）是实现集群pod和Services功能的 。Pod由<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/317.html">Deployments</a>，ReplicationController等进行管理。Namespace 插件对象是在kube-system Namespace中创建。</p>
+<h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><p>虽然不严格要求使用插件，但Kubernetes集群都应该具有集群 DNS。</p>
+<p>群集 DNS是一个DNS服务器，能够为 Kubernetes services提供 DNS记录。</p>
+<p>由Kubernetes启动的容器自动将这个DNS服务器包含在他们的DNS searches中。</p>
+<p>了解<a target="_blank" rel="noopener" href="https://www.kubernetes.org.cn/542.html">更多详情</a></p>
+<h1 id="用户界面"><a href="#用户界面" class="headerlink" title="用户界面"></a>用户界面</h1><p>kube-ui提供集群状态基础信息查看。更多详细信息，请参阅<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tasks/access-kubernetes-api/http-proxy-access-api/">使用HTTP代理访问Kubernetes API</a></p>
+<h1 id="容器资源监测"><a href="#容器资源监测" class="headerlink" title="容器资源监测"></a>容器资源监测</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/user-guide/monitoring">容器资源监控</a>提供一个UI浏览监控数据。</p>
+<h1 id="Cluster-level-Logging"><a href="#Cluster-level-Logging" class="headerlink" title="Cluster-level Logging"></a>Cluster-level Logging</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/user-guide/logging/overview">Cluster-level logging</a>，负责保存容器日志，搜索/查看日志。</p>
+<h1 id="节点（Node）组件"><a href="#节点（Node）组件" class="headerlink" title="节点（Node）组件"></a>节点（Node）组件</h1><p>节点组件运行在<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/304.html">Node</a>，提供Kubernetes运行时环境，以及维护Pod。</p>
+<h1 id="kubelet"><a href="#kubelet" class="headerlink" title="kubelet"></a>kubelet</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/admin/kubelet">kubelet</a>是主要的节点代理，它会监视已分配给节点的pod，具体功能：</p>
+<ul>
+<li>安装Pod所需的volume。</li>
+<li>下载Pod的Secrets。</li>
+<li>Pod中运行的 docker（或experimentally，rkt）容器。</li>
+<li>定期执行容器健康检查。</li>
+<li>Reports the status of the pod back to the rest of the system, by creating a <em>mirror pod</em> if necessary.</li>
+<li>Reports the status of the node back to the rest of the system.</li>
 </ul>
-</li>
-<li><p><strong>查看环境变量应该如下打印</strong></p>
- <pre><code class="hljs bash">C:\Users\xxx&gt;go env
-<span class="hljs-built_in">set</span> GO111MODULE=
-<span class="hljs-built_in">set</span> GOARCH=amd64
-<span class="hljs-built_in">set</span> GOBIN=
-<span class="hljs-built_in">set</span> GOCACHE=D:\go-build
-<span class="hljs-built_in">set</span> GOENV=D:\go\env
-<span class="hljs-built_in">set</span> GOEXE=.exe
-<span class="hljs-built_in">set</span> GOFLAGS=
-<span class="hljs-built_in">set</span> GOHOSTARCH=amd64
-<span class="hljs-built_in">set</span> GOHOSTOS=windows
-<span class="hljs-built_in">set</span> GOINSECURE=
-<span class="hljs-built_in">set</span> GOMODCACHE=D:\go\pkg\mod
-<span class="hljs-built_in">set</span> GONOPROXY=
-<span class="hljs-built_in">set</span> GONOSUMDB=
-<span class="hljs-built_in">set</span> GOOS=windows
-<span class="hljs-built_in">set</span> GOPATH=D:\go
-<span class="hljs-built_in">set</span> GOPRIVATE=
-<span class="hljs-built_in">set</span> GOPROXY=https://goproxy.cn
-<span class="hljs-built_in">set</span> GOROOT=D:\go
-<span class="hljs-built_in">set</span> GOSUMDB=sum.golang.org
-<span class="hljs-built_in">set</span> GOTMPDIR=
-<span class="hljs-built_in">set</span> GOTOOLDIR=D:\go\pkg\tool\windows_amd64
-<span class="hljs-built_in">set</span> GOVCS=
-<span class="hljs-built_in">set</span> GOVERSION=go1.16.3
-<span class="hljs-built_in">set</span> GCCGO=gccgo
-<span class="hljs-built_in">set</span> AR=ar
-<span class="hljs-built_in">set</span> CC=gcc
-<span class="hljs-built_in">set</span> CXX=g++
-<span class="hljs-built_in">set</span> CGO_ENABLED=1
-<span class="hljs-built_in">set</span> GOMOD=NUL
-<span class="hljs-built_in">set</span> CGO_CFLAGS=-g -O2
-<span class="hljs-built_in">set</span> CGO_CPPFLAGS=
-<span class="hljs-built_in">set</span> CGO_CXXFLAGS=-g -O2
-<span class="hljs-built_in">set</span> CGO_FFLAGS=-g -O2
-<span class="hljs-built_in">set</span> CGO_LDFLAGS=-g -O2
-<span class="hljs-built_in">set</span> PKG_CONFIG=pkg-config
-<span class="hljs-built_in">set</span> GOGCCFLAGS=-m64 -mthreads -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -fdebug-prefix-map=C:\Users\303sn\AppData\Local\Temp\go-build3612435218=/tmp/go-build -gno-record-gcc-switches</code></pre>
-</li>
-</ol>
-<h1 id="配置goland"><a href="#配置goland" class="headerlink" title="配置goland"></a>配置goland</h1><ul>
-<li><p>goland自行下载：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/go/">https://www.jetbrains.com/go/</a></p>
-<ol>
-<li><p>使用<code>go module</code>方式新建项目，路径名字自行定义</p>
-</li>
-<li><p>创建完成后如图</p>
-<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414141427103.png" alt="image-20210414141427103" class="lazyload"></p>
-</li>
-<li><p>编写测试代码</p>
- <pre><code class="hljs golang"><span class="hljs-keyword">package</span> main
-
-<span class="hljs-keyword">import</span> (
-  <span class="hljs-string">&quot;fmt&quot;</span>
-  <span class="hljs-string">&quot;github.com/gogf/gf&quot;</span>
-)
-
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-  fmt.Println(<span class="hljs-string">&quot;hello GF&quot;</span>, gf.VERSION)
-&#125;</code></pre>
-</li>
-<li><p>同步依赖，鼠标右击<code>go.mod</code>文件，点击<code>Sync Go Module</code>同步按钮同步依赖</p>
-<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143048002.png" alt="image-20210414143048002" class="lazyload"></p>
-</li>
-<li><p>运行</p>
-<p> <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/image-20210414143318911.png" alt="image-20210414143318911" class="lazyload"></p>
-</li>
-</ol>
-</li>
-</ul>
+<h1 id="kube-proxy"><a href="#kube-proxy" class="headerlink" title="kube-proxy"></a>kube-proxy</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/admin/kube-proxy">kube-proxy</a>通过在主机上维护网络规则并执行连接转发来实现Kubernetes服务抽象。</p>
+<h1 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h1><p>docker用于运行容器。</p>
+<h1 id="RKT"><a href="#RKT" class="headerlink" title="RKT"></a>RKT</h1><p>rkt运行容器，作为docker工具的替代方案。</p>
+<h1 id="supervisord"><a href="#supervisord" class="headerlink" title="supervisord"></a>supervisord</h1><p>supervisord是一个轻量级的监控系统，用于保障kubelet和docker运行。</p>
+<h1 id="fluentd"><a href="#fluentd" class="headerlink" title="fluentd"></a>fluentd</h1><p>fluentd是一个守护进程，可提供<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/overview/components/#cluster-level-logging">cluster-level logging</a>.。</p>
 
   </article>
 
@@ -398,7 +302,7 @@ PKG_CONFIG=pkg-config</code></pre>
     
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>303snowing<br>
-    <strong>本文链接：</strong><a href="https://github.com/303snowing/303snowing.github.io/2021/04/14/golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2021&#x2F;04&#x2F;14&#x2F;golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2021&#x2F;04&#x2F;14&#x2F;golang%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE&#x2F;</a><br>
+    <strong>本文链接：</strong><a href="https://github.com/303snowing/303snowing.github.io/2022/01/24/Kubernete%E7%BB%84%E4%BB%B6/" title="https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;24&#x2F;Kubernete%E7%BB%84%E4%BB%B6&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;github.com&#x2F;303snowing&#x2F;303snowing.github.io&#x2F;2022&#x2F;01&#x2F;24&#x2F;Kubernete%E7%BB%84%E4%BB%B6&#x2F;</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -409,10 +313,10 @@ PKG_CONFIG=pkg-config</code></pre>
   
   <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/golang/">golang</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/K8S/">K8S</a>
     
     
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/golang/" rel="tag">golang</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a>
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/K8S/" rel="tag">K8S</a>
     
 </div>
 
@@ -455,7 +359,7 @@ PKG_CONFIG=pkg-config</code></pre>
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
  
 
-<script async src="/js/app.js?v=1643091640002"></script>
+<script async src="/js/app.js?v=1643091639998"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
