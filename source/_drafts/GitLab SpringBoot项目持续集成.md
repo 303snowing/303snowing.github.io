@@ -25,7 +25,7 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/2021
     1. `docker`命令
 
     ```bash
-    snowing@303snowing:~$ docker version
+    ubuntu@ubuntu:~$ docker version
     Client: Docker Engine - Community
      Cloud integration: 1.0.12
      Version:           20.10.5
@@ -60,7 +60,7 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/2021
     2. `docker-compose`命令
 
     ```bash
-    snowing@303snowing:~$ docker-compose version
+    ubuntu@ubuntu:~$ docker-compose version
     docker-compose version 1.29.0, build 07737305
     docker-py version: 5.0.0
     CPython version: 3.7.10
