@@ -12,6 +12,8 @@ cover: https://cdn.jsdelivr.net/gh/303snowing/303snowing.github.io@hexo-img/2022
 setuid 和 setgid 分别是 set uid ID upon execution 和 set group ID upon execution 的缩写。我们一般会再次把它们缩写为 suid 和 sgid。它们是控制文件访问的权限标志(flag)，它们分别允许用户以可执行文件的 owner 或 owner group 的权限运行可执行文件。
 说明：本文的演示环境为 ubuntu 16.04。
 
+<!--more-->
+
 # SUID
 
 在 Linux 中，所有账号的密码记录在 /etc/shadow 这个文件中，并且只有 root 可以读写入这个文件：
